@@ -1,0 +1,286 @@
+import { useState } from "react";
+import { Star, ShieldCheck, Percent, X } from "lucide-react";
+// import microwaveImg from "@/assets/images/microwave.jpg"; // add microwave image
+import cartImg from "@/assets/images/cart.jpg";
+
+const MicrowaveRepair = () => {
+  const [cart, setCart] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const [showOffers, setShowOffers] = useState(false);
+  const [showWarrantyModal, setShowWarrantyModal] = useState(false);
+
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
+
+  const OfferItem = ({ title, desc }) => {
+    return (
+      <div className="flex items-center gap-4">
+        <div className="bg-green-100 p-3 rounded-lg">
+          <Percent className="text-green-600" size={18} />
+        </div>
+        <div>
+          <p className="font-medium text-gray-800">{title}</p>
+          <p className="text-sm text-gray-500">{desc}</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="bg-[#F8FAFC] min-h-screen py-12">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        {/* ================= LEFT COLUMN ================= */}
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900">
+              Microwave Repair
+            </h1>
+
+            <div className="flex items-center gap-2 mt-4 text-gray-700">
+              <Star size={18} className="text-purple-600 fill-purple-600" />
+              <span className="font-medium">4.78</span>
+              <span>(1.2M bookings)</span>
+            </div>
+          </div>
+
+          <div
+            onClick={() => setShowWarrantyModal(true)}
+            className="bg-gray-100 p-4 rounded-xl flex items-center justify-between cursor-pointer hover:bg-gray-200 transition"
+          >
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="text-gray-700" />
+              <span className="text-sm text-gray-700">
+                Up to 180 days warranty
+              </span>
+            </div>
+            <span>›</span>
+          </div>
+
+          <button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold">
+            View Services
+          </button>
+        </div>
+
+        {/* ================= MIDDLE COLUMN ================= */}
+        <div className="md:col-span-2 space-y-10">
+
+          <h2 className="text-3xl font-semibold">
+            Microwave Services
+          </h2>
+
+          <RepairCard
+            title="Microwave check-up"
+            rating="4.80"
+            reviews="85K reviews"
+            price="299"
+            time="60 mins"
+            // image={microwaveImg}
+            addToCart={addToCart}
+            openModal={() => setSelectedService("Microwave check-up")}
+          />
+
+          <RepairCard
+            title="Heating issue repair"
+            rating="4.76"
+            reviews="62K reviews"
+            price="399"
+            time="90 mins"
+            // image={microwaveImg}
+            addToCart={addToCart}
+            openModal={() => setSelectedService("Heating issue repair")}
+          />
+
+          <RepairCard
+            title="Button / panel repair"
+            rating="4.74"
+            reviews="41K reviews"
+            price="349"
+            time="60 mins"
+            // image={microwaveImg}
+            addToCart={addToCart}
+            openModal={() => setSelectedService("Button / panel repair")}
+          />
+
+        </div>
+
+        {/* ================= RIGHT COLUMN ================= */}
+        <div className="space-y-6">
+
+          {/* Cart */}
+          <div className="bg-white border rounded-xl p-8 text-center shadow-sm">
+            {cart.length === 0 ? (
+              <>
+                <img src={cartImg} alt="cart" className="w-24 mx-auto mb-4" />
+                <p className="text-gray-600">No items in your cart</p>
+              </>
+            ) : (
+              <>
+                <h3 className="font-semibold mb-3">Cart</h3>
+                {cart.map((item, i) => (
+                  <p key={i} className="text-sm mb-1">
+                    {item.title}
+                  </p>
+                ))}
+              </>
+            )}
+          </div>
+
+          {/* Coupon */}
+          <div className="bg-white border rounded-xl p-6 shadow-sm">
+            <div className="flex items-center gap-4">
+              <Percent className="text-green-600" />
+              <div>
+                <h4 className="font-semibold">Get ₹50 coupon</h4>
+                <p className="text-sm text-gray-600">
+                  After first service delivery
+                </p>
+              </div>
+            </div>
+
+            {showOffers && (
+              <div className="mt-5 space-y-4 border-t pt-4">
+                <OfferItem title="Amazon cashback upto ₹100" desc="Via Amazon Pay balance" />
+                <OfferItem title="Flat ₹100 cashback" desc="Via Rupay CC on POP app" />
+                <OfferItem title="Up to ₹150 cashback" desc="Via Paytm UPI only" />
+              </div>
+            )}
+
+            <button
+              onClick={() => setShowOffers(!showOffers)}
+              className="text-purple-600 text-sm mt-4 font-medium flex items-center gap-1"
+            >
+              {showOffers ? "View Less Offers ▲" : "View More Offers ▼"}
+            </button>
+          </div>
+
+          {/* Promise */}
+          <div className="bg-white border rounded-xl p-6 shadow-sm">
+            <h4 className="font-semibold mb-4">UC Promise</h4>
+            <div className="space-y-3 text-sm text-gray-700">
+              <div>✔ Verified Professionals</div>
+              <div>✔ Hassle Free Booking</div>
+              <div>✔ Transparent Pricing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= SERVICE DETAILS MODAL ================= */}
+      {selectedService && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white w-[600px] max-h-[90vh] overflow-y-auto rounded-2xl p-8 relative">
+
+            <button
+              onClick={() => setSelectedService(null)}
+              className="absolute top-4 right-4 bg-gray-200 rounded-full p-2"
+            >
+              <X size={18} />
+            </button>
+
+            <h2 className="text-3xl font-bold mb-6">
+              {selectedService}
+            </h2>
+
+            <ul className="space-y-3 text-gray-700 mb-6">
+              <li>✔ Complete inspection</li>
+              <li>✔ Heating component testing</li>
+              <li>✔ Electrical board check</li>
+              <li>✔ Spare replacement if required</li>
+            </ul>
+
+            <button
+              onClick={() => setSelectedService(null)}
+              className="mt-8 w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-xl font-semibold"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ================= WARRANTY MODAL ================= */}
+      {showWarrantyModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white w-full max-w-xl rounded-2xl shadow-xl relative max-h-[85vh] overflow-y-auto">
+
+            <button
+              onClick={() => setShowWarrantyModal(false)}
+              className="absolute top-4 right-4 bg-gray-100 rounded-full p-2"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="p-8 space-y-6">
+              <h2 className="text-2xl font-bold">
+                Up to 180 days warranty
+              </h2>
+
+              <p className="text-gray-600">
+                Free repair if the issue arises again within warranty period.
+              </p>
+
+              <p className="text-gray-500 text-sm">
+                Terms & conditions apply. Warranty valid only for service-related issues.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const RepairCard = ({
+  title,
+  rating,
+  reviews,
+  price,
+  time,
+  image,
+  addToCart,
+  openModal,
+}) => {
+  return (
+    <div className="border-b pb-10 flex justify-between items-start">
+      <div className="max-w-md">
+        <h3 className="text-lg font-semibold">{title}</h3>
+
+        <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
+          <Star size={14} className="text-purple-600 fill-purple-600" />
+          <span>{rating}</span>
+          <span>({reviews})</span>
+        </div>
+
+        <p className="mt-3 font-medium">
+          Starts at ₹{price} • {time}
+        </p>
+
+        <button
+          onClick={openModal}
+          className="text-purple-600 text-sm mt-3 font-medium"
+        >
+          View details
+        </button>
+      </div>
+
+      <div className="text-center">
+        {/* <img
+          src={image}
+          alt={title}
+          className="w-32 h-40 object-contain bg-gray-100 rounded-xl p-3"
+        /> */}
+
+        <button
+          onClick={() => addToCart({ title, price })}
+          className="border border-purple-600 text-purple-600 px-6 py-2 rounded-xl mt-3 hover:bg-purple-600 hover:text-white transition"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default MicrowaveRepair;
