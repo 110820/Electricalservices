@@ -12,7 +12,6 @@ import ACRepair from "../pages/public/ACRepair";
 import WashingMachineRepair from "../pages/public/WashingMachineRepair";
 import RefrigeratorRepair from "../pages/public/RefrigeratorRepair";
 import GeyserRepair from "../pages/public/GeyserRepair";
-import WaterPurifier from "../pages/public/waterpurifier";
 import MicrowaveRepair from "../pages/public/MicrowaveRepair";
 
 import ServiceCard from "../components/common/service/ServiceCard";
