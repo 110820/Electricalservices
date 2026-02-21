@@ -113,7 +113,7 @@ const HomeServices = () => {
         <div
           onClick={() => {
             setShowModal(false);
-            navigate("/services/water-purifier");
+            navigate("/services/WaterPurifier");
           }}
           className="flex flex-col items-center cursor-pointer group"
         >
