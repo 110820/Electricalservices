@@ -13,7 +13,7 @@ import WashingMachineRepair from "../pages/public/WashingMachineRepair";
 import RefrigeratorRepair from "../pages/public/RefrigeratorRepair";
 import GeyserRepair from "../pages/public/GeyserRepair";
 import MicrowaveRepair from "../pages/public/MicrowaveRepair";
-import WaterPurifier  from "../pages/public/WaterPurifier.jsx";
+import WaterPurifier  from "../pages/public/waterpurifier";
 import ServiceCard from "../components/common/service/ServiceCard";
 
 // Auth Pages
