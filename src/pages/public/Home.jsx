@@ -62,7 +62,7 @@ const Home = () => {
             <div className="mt-8 flex gap-4">
               <Link
                 to="/home-services"
-                className="px-6 py-3 bg-[#2563EB] text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition duration-300"
+                className="px-6 py-3 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-600 transition duration-300"
               >
                 Explore Services
               </Link>
@@ -79,7 +79,7 @@ const Home = () => {
       </section>
 
       {/* ================= STATS SECTION ================= */}
-      <section className="bg-[#2563EB] text-white py-16">
+      <section className="bg-purple-400 text-white py-16">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 text-center gap-10">
           <div>
             <h3 className="text-4xl font-bold">10K+</h3>
@@ -104,7 +104,7 @@ const Home = () => {
 <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#EEF2FF] via-white to-[#F8FAFC]">
 
   {/* Background Blobs */}
-  <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+  <div className="absolute -top-20 -left-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
   <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
 
   <div className="relative max-w-7xl mx-auto px-6">
@@ -126,7 +126,7 @@ const Home = () => {
         <div
           key={service.id}
           className="group relative bg-white/70 backdrop-blur-lg border border-white/40 p-8 rounded-2xl shadow-md 
-          transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:border-blue-400"
+          transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:border-purple-600"
         >
           {/* Animated Top Glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/0 via-blue-400/10 to-purple-400/0 opacity-0 group-hover:opacity-100 transition duration-500"></div>
@@ -143,8 +143,8 @@ const Home = () => {
     <div className="mt-16 text-center">
       <Link
         to="/home-services"
-        className="inline-block px-8 py-3 bg-[#2563EB] text-white rounded-xl font-medium 
-        transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-blue-700"
+        className="inline-block px-8 py-3 bg-purple-600 text-white rounded-xl font-medium 
+        transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-purple-600"
       >
         View all services →
       </Link>
@@ -238,6 +238,51 @@ const Home = () => {
 </section>
 
 
+{/* ================= FREE VISIT CALL SECTION ================= */}
+<section className="relative py-24 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-600 overflow-hidden">
+
+  {/* Glow Effects */}
+  <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+  <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+
+  <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+
+    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+      Get a <span className="text-yellow-300">Free Visiting</span> Today!
+    </h2>
+
+    <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
+      Not sure what’s wrong with your appliance?  
+      Our experts will visit your home and inspect it — absolutely free.
+    </p>
+
+    {/* Phone Highlight Box */}
+    <div className="mt-10 inline-flex items-center gap-6 bg-white/10 backdrop-blur-lg 
+    border border-white/20 px-10 py-6 rounded-2xl shadow-xl">
+
+      <div className="text-3xl">📞</div>
+
+      <div className="text-left">
+        <p className="text-sm text-white/80">Call us now</p>
+        <p className="text-2xl font-bold tracking-wide">
+          +91 9325427277
+        </p>
+      </div>
+
+      <a
+        href="tel:+919325427277"
+        className="ml-6 px-6 py-3 bg-white text-blue-700 font-semibold rounded-full 
+        hover:scale-105 hover:shadow-lg transition duration-300"
+      >
+        Call Now
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
      
 {/* ================= CTA SECTION ================= */}
 {/* ================= PREMIUM CTA SECTION ================= */}
@@ -270,7 +315,7 @@ const Home = () => {
       <Link
         to="/home-services"
         className="inline-block mt-10 px-10 py-4 rounded-full font-semibold text-white
-        bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+        bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600
         bg-[length:200%_200%]
         animate-gradient
         shadow-lg hover:shadow-xl

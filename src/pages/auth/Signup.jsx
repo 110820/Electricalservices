@@ -122,7 +122,7 @@ const Signup = () => {
           {/* Button */}
           <button
             type="submit"
-            className="w-full px-6 py-3 bg-[#2563EB] text-white rounded-md text-sm font-medium hover:opacity-90 transition"
+            className="w-full px-6 py-3 bg-purple-600 text-white rounded-md text-sm font-medium hover:opacity-90 transition"
           >
             Create Account
           </button>
@@ -133,7 +133,7 @@ const Signup = () => {
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-[#2563EB] font-medium hover:underline"
+            className="text-purple-600 font-medium hover:underline"
           >
             Login
           </Link>

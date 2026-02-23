@@ -199,7 +199,7 @@ const totalReviews = ratings.reduce((acc, r) => acc + r.count, 0);
 
                         <button
                           onClick={() => setSelectedService(service)}
-                          className="text-[#2563EB] text-sm mt-3 font-semibold"
+                          className="text-purple-600 text-sm mt-3 font-semibold"
                         >
                           View details
                         </button>
@@ -207,7 +207,7 @@ const totalReviews = ratings.reduce((acc, r) => acc + r.count, 0);
 
                       <button
                         onClick={() => addToCart(service)}
-                        className="border border-[#2563EB] text-[#2563EB] px-5 py-2 rounded-lg hover:bg-[#2563EB] hover:text-white transition"
+                        className="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition"
                       >
                         Add
                       </button>

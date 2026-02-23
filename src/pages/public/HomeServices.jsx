@@ -13,6 +13,7 @@ import waterIcon from "../../assets/images/wapu.jpg";
 import gyserIcon from "../../assets/images/gyser.jpg";
 import refrigIcon from "../../assets/images/refri.jpg";
 import washIcon from "../../assets/images/wash.jpg";
+import microwave from "../../assets/images/microwave.jpg";  
 
 const categories = [
  {
@@ -75,7 +76,7 @@ const HomeServices = () => {
       }
       className="flex flex-col items-center text-center cursor-pointer group transition"
     >
-      <div className="w-20 h-20 flex items-center justify-center bg-[#F1F5F9] rounded-xl overflow-hidden group-hover:bg-[#DBEAFE] transition duration-300">
+      <div className="w-20 h-20 flex items-center justify-center bg-[#F1F5F9] rounded-xl overflow-hidden group-hover:bg-purple-400 transition duration-300">
         <img
           src={cat.image}
           alt={cat.name}
@@ -83,7 +84,7 @@ const HomeServices = () => {
         />
       </div>
 
-      <p className="mt-3 text-sm text-[#475569] group-hover:text-[#2563EB] transition duration-300">
+      <p className="mt-3 text-sm text-[#475569] group-hover:text-purple-600 transition duration-300">
         {cat.name}
       </p>
     </div>
@@ -132,7 +133,7 @@ const HomeServices = () => {
           className="flex flex-col items-center cursor-pointer group"
         >
           <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition">
-            <img src={acIcon} alt="Microwave" className="w-16" />
+            <img src={microwave} alt="Microwave" className="w-16" />
           </div>
           <p className="mt-3 text-sm">Microwave</p>
         </div>

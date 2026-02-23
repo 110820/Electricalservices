@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-// import ProtectedRoute from "../components/common/ProtectedRoute";
+import ProtectedRoute from "../components/common/ProtectedRoute";
 
 // Public Pages
 import Home from "../pages/public/Home";
@@ -22,7 +22,7 @@ import Signup from "../pages/auth/Signup";
 
 // // User Pages
 // import Dashboard from "../pages/user/Dashboard";
-// import BookingPage from "../pages/user/BookingPage";
+ import BookingPage from "../pages/user/BookingPage";
 
 const AppRoutes = () => {
   return (
@@ -54,6 +54,7 @@ const AppRoutes = () => {
         {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/bookingpage" element={<BookingPage />} />
 
       </Route>
 
@@ -66,9 +67,9 @@ const AppRoutes = () => {
             <Dashboard />
           </ProtectedRoute>
         }
-      />
+      /> */}
 
-      <Route
+      {/* <Route
         path="/booking/:id"
         element={
           <ProtectedRoute role="user">

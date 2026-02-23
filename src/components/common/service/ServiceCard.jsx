@@ -13,7 +13,7 @@ const ServiceCard = ({ service }) => {
 
       <Link
         to={`/services/${service.id}`}
-        className="inline-block mt-6 text-sm font-medium text-[#2563EB] hover:underline"
+        className="inline-block mt-6 text-sm font-medium text-purple-600 hover:underline"
       >
         View Details →
       </Link>
