@@ -7,6 +7,13 @@ const Signup = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const handleNavigation = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -131,12 +138,13 @@ const Signup = () => {
 
         <p className="mt-6 text-sm text-[#64748B]">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-purple-600 font-medium hover:underline"
-          >
-            Login
-          </Link>
+         <Link
+  to="/login"
+  onClick={handleNavigation}
+  className="text-purple-600 font-medium hover:underline"
+>
+  Login
+</Link>
         </p>
 
       </div>

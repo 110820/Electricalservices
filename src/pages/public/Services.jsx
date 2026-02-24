@@ -133,15 +133,14 @@ const totalReviews = ratings.reduce((acc, r) => acc + r.count, 0);
 
   return (
     <div className="bg-[#F8FAFC] py-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* LEFT COLUMN */}
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-6">
+       <div className="bg-white border border-[#E2E8F0] rounded-xl p-6 lg:col-span-1">
           <h2 className="text-2xl font-bold text-[#0F172A] mb-6">
             Electrician
           </h2>
 
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-3 gap-5">
             {categories.map((cat, index) => (
               <div
                 key={index}
@@ -165,7 +164,7 @@ const totalReviews = ratings.reduce((acc, r) => acc + r.count, 0);
         </div>
 
         {/* MIDDLE COLUMN */}
-        <div className="col-span-2 max-h-[80vh] overflow-y-auto pr-4 space-y-10">
+       <div className="lg:col-span-2 max-h-none lg:max-h-[80vh] overflow-visible lg:overflow-y-auto pr-0 lg:pr-4 space-y-10">
           {[...new Set(servicesData.map((s) => s.category))]
             .filter(Boolean)
             .map((category) => (

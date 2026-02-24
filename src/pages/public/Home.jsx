@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ServiceCard from "../../components/common/service/ServiceCard";
-import heroImg from "../../assets/images/hero.jpg"; // make sure image exists
+import heroImg from "../../assets/images/hero.jpg";
 
 const services = [
   {
@@ -20,6 +20,83 @@ const services = [
     description: "Front load & top load repair and servicing.",
   },
 ];
+
+/* ================= STATS COMPONENT ================= */
+const Stats = () => {
+  const [customers, setCustomers] = useState(0);
+  const [technicians, setTechnicians] = useState(0);
+  const [rating, setRating] = useState(0);
+
+  useEffect(() => {
+    const duration = 2000;
+    const interval = 20;
+    const steps = duration / interval;
+
+    const customerTarget = 10000;
+    const technicianTarget = 500;
+    const ratingTarget = 4.8;
+
+    let count = 0;
+
+    const timer = setInterval(() => {
+      count++;
+
+      setCustomers((prev) =>
+        prev + customerTarget / steps >= customerTarget
+          ? customerTarget
+          : prev + customerTarget / steps
+      );
+
+      setTechnicians((prev) =>
+        prev + technicianTarget / steps >= technicianTarget
+          ? technicianTarget
+          : prev + technicianTarget / steps
+      );
+
+      setRating((prev) =>
+        prev + ratingTarget / steps >= ratingTarget
+          ? ratingTarget
+          : prev + ratingTarget / steps
+      );
+
+      if (count >= steps) clearInterval(timer);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="bg-purple-500 text-white py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            {Math.floor(customers / 1000)}K+
+          </h3>
+          <p className="mt-2 text-xs md:text-sm">Happy Customers</p>
+        </div>
+
+        <div>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            {Math.floor(technicians)}+
+          </h3>
+          <p className="mt-2 text-xs md:text-sm">Verified Technicians</p>
+        </div>
+
+        <div>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            {rating.toFixed(1)}★
+          </h3>
+          <p className="mt-2 text-xs md:text-sm">Average Rating</p>
+        </div>
+
+        <div>
+          <h3 className="text-3xl md:text-4xl font-bold">24/7</h3>
+          <p className="mt-2 text-xs md:text-sm">Customer Support</p>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Home = () => {
   const [show, setShow] = useState(false);
@@ -40,7 +117,6 @@ const Home = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
 
         <div className="relative max-w-7xl mx-auto px-6 text-white">
@@ -49,7 +125,7 @@ const Home = () => {
               show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
               Professional Electronics Services <br />
               At Your Doorstep
             </h1>
@@ -59,10 +135,10 @@ const Home = () => {
               Experience corporate-level service quality for your home appliances.
             </p>
 
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 to="/home-services"
-                className="px-6 py-3 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-600 transition duration-300"
+                className="px-6 py-3 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition duration-300"
               >
                 Explore Services
               </Link>
@@ -79,8 +155,11 @@ const Home = () => {
       </section>
 
       {/* ================= STATS SECTION ================= */}
-      <section className="bg-purple-400 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 text-center gap-10">
+      {/* ================= STATS SECTION ================= */}
+<section className="bg-purple-500 text-white py-14 md:py-20">
+  <Stats />
+</section>
+        {/* <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 text-center gap-10">
           <div>
             <h3 className="text-4xl font-bold">10K+</h3>
             <p className="mt-2 text-sm">Happy Customers</p>
@@ -98,7 +177,7 @@ const Home = () => {
             <p className="mt-2 text-sm">Customer Support</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= SERVICES PREVIEW ================= */}
 <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#EEF2FF] via-white to-[#F8FAFC]">
@@ -239,48 +318,41 @@ const Home = () => {
 
 
 {/* ================= FREE VISIT CALL SECTION ================= */}
-<section className="relative py-24 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-600 overflow-hidden">
+<section className="relative py-16 md:py-24 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 overflow-hidden">
+        <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            Get a <span className="text-yellow-300">Free Visiting</span> Today!
+          </h2>
 
-  {/* Glow Effects */}
-  <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
-  <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+          <p className="mt-4 md:mt-6 text-base md:text-lg text-white/90 max-w-2xl mx-auto">
+            Not sure what’s wrong with your appliance?
+            Our experts will visit your home and inspect it — absolutely free.
+          </p>
 
-  <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <div className="mt-10 flex flex-col md:flex-row items-center justify-center gap-6 
+          bg-white/10 backdrop-blur-lg border border-white/20 
+          px-6 md:px-10 py-6 rounded-2xl shadow-xl">
 
-    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-      Get a <span className="text-yellow-300">Free Visiting</span> Today!
-    </h2>
+            <div className="text-3xl">📞</div>
 
-    <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
-      Not sure what’s wrong with your appliance?  
-      Our experts will visit your home and inspect it — absolutely free.
-    </p>
+            <div className="text-center md:text-left">
+              <p className="text-sm text-white/80">Call us now</p>
+              <p className="text-xl md:text-2xl font-bold tracking-wide">
+                +91 9325427277
+              </p>
+            </div>
 
-    {/* Phone Highlight Box */}
-    <div className="mt-10 inline-flex items-center gap-6 bg-white/10 backdrop-blur-lg 
-    border border-white/20 px-10 py-6 rounded-2xl shadow-xl">
+            <a
+              href="tel:+919325427277"
+              className="px-6 py-3 bg-white text-blue-700 font-semibold rounded-full 
+              hover:scale-105 hover:shadow-lg transition duration-300"
+            >
+              Call Now
+            </a>
+          </div>
+        </div>
+      </section>
 
-      <div className="text-3xl">📞</div>
-
-      <div className="text-left">
-        <p className="text-sm text-white/80">Call us now</p>
-        <p className="text-2xl font-bold tracking-wide">
-          +91 9325427277
-        </p>
-      </div>
-
-      <a
-        href="tel:+919325427277"
-        className="ml-6 px-6 py-3 bg-white text-blue-700 font-semibold rounded-full 
-        hover:scale-105 hover:shadow-lg transition duration-300"
-      >
-        Call Now
-      </a>
-
-    </div>
-
-  </div>
-</section>
 
 
      

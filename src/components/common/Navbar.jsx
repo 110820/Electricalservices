@@ -1,27 +1,32 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { FaMapMarkerAlt, FaSearch, FaLocationArrow } from "react-icons/fa";
-
+import {
+  FaMapMarkerAlt,
+  FaSearch,
+  FaLocationArrow,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const Navbar = () => {
   const [showLocationModal, setShowLocationModal] = useState(false);
-  
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
 
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold tracking-tight">
             <span className="text-[#0F172A]">Servi</span>
-            <span className="text-[#2563EB]">xo</span>
+            <span className="text-purple-600">xo</span>
           </Link>
 
-          {/* Middle Section - Location + Search */}
+          {/* ================= Desktop Middle Section ================= */}
           <div className="hidden md:flex items-center gap-4">
 
-            {/* Location Box */}
+            {/* Location */}
             <div
               onClick={() => setShowLocationModal(true)}
               className="flex items-center gap-3 px-4 py-2 border rounded-lg cursor-pointer 
@@ -33,8 +38,8 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Search Box */}
-            <div className="flex items-center gap-3 px-4 py-2 border rounded-lg bg-white shadow-sm w-80">
+            {/* Search */}
+            <div className="flex items-center gap-3 px-4 py-2 border rounded-lg bg-white shadow-sm w-72">
               <FaSearch className="text-gray-400" />
               <input
                 type="text"
@@ -42,43 +47,103 @@ const Navbar = () => {
                 className="outline-none text-sm w-full"
               />
             </div>
-
           </div>
 
-          {/* Right Navigation */}
+          {/* ================= Desktop Navigation ================= */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-
             <Link to="/home-services" className="hover:text-black">
               Home Services
             </Link>
 
-            <Link
+            {/* <Link
               to="/login"
               className="text-[#475569] hover:text-[#0F172A] transition duration-300"
             >
               Login
-            </Link>
+            </Link> */}
 
             <Link
               to="/signup"
-              className="px-5 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-600 transition duration-300 shadow-sm hover:shadow-md"
+              className="px-5 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition duration-300 shadow-sm hover:shadow-md"
             >
               Get Started
             </Link>
-
           </nav>
+
+          {/* ================= Mobile Menu Button ================= */}
+          <button
+            className="md:hidden text-2xl"
+            onClick={() => setMobileMenu(!mobileMenu)}
+          >
+            {mobileMenu ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
+
+        {/* ================= Mobile Menu ================= */}
+        {mobileMenu && (
+          <div className="md:hidden bg-white border-t border-gray-200 px-4 py-6 space-y-6 shadow-lg">
+
+            {/* Location */}
+            <div
+              onClick={() => {
+                setShowLocationModal(true);
+                setMobileMenu(false);
+              }}
+              className="flex items-center gap-3 px-4 py-3 border rounded-lg cursor-pointer hover:border-[#2563EB]"
+            >
+              <FaMapMarkerAlt className="text-gray-500" />
+              <span className="text-sm text-gray-700">
+                Mumbai Central, Mumbai
+              </span>
+            </div>
+
+            {/* Search */}
+            <div className="flex items-center gap-3 px-4 py-3 border rounded-lg">
+              <FaSearch className="text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search services"
+                className="outline-none text-sm w-full"
+              />
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col gap-4 text-sm font-medium">
+              <Link
+                to="/home-services"
+                onClick={() => setMobileMenu(false)}
+              >
+                Home Services
+              </Link>
+
+              {/* <Link
+                to="/login"
+                onClick={() => setMobileMenu(false)}
+              >
+                Login
+              </Link> */}
+
+              <Link
+                to="/signup"
+                onClick={() => setMobileMenu(false)}
+                className="px-4 py-2 rounded-lg bg-purple-600 text-white text-center"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* ================= LOCATION MODAL ================= */}
       {showLocationModal && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
-          <div className="bg-white w-[600px] rounded-2xl shadow-xl p-8 relative">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
+          <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 md:p-8 relative">
 
             {/* Close Button */}
             <button
               onClick={() => setShowLocationModal(false)}
-              className="absolute -top-5 -right-5 bg-white w-10 h-10 rounded-full shadow flex items-center justify-center hover:bg-gray-100"
+              className="absolute -top-4 -right-4 bg-white w-10 h-10 rounded-full shadow flex items-center justify-center hover:bg-gray-100"
             >
               ✕
             </button>
@@ -88,7 +153,7 @@ const Navbar = () => {
               <FaSearch className="text-gray-400" />
               <input
                 type="text"
-                placeholder="Search for your location/society/apartment"
+                placeholder="Search for your location"
                 className="outline-none w-full text-sm"
               />
             </div>
@@ -101,7 +166,6 @@ const Navbar = () => {
 
             <hr className="my-4" />
 
-            {/* Saved Section */}
             <h3 className="text-lg font-semibold mb-4">Saved</h3>
 
             <div className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -117,7 +181,6 @@ const Navbar = () => {
             <div className="text-center text-xs text-gray-400 mt-8">
               powered by Google
             </div>
-
           </div>
         </div>
       )}
