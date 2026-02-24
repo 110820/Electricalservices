@@ -118,7 +118,7 @@ const HomeServices = () => {
           }}
           className="flex flex-col items-center cursor-pointer group"
         >
-          <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition">
+          <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-purple-400 transition">
             <img src={waterIcon} alt="Water Purifier" className="w-16" />
           </div>
           <p className="mt-3 text-sm">Water Purifier</p>
@@ -132,7 +132,7 @@ const HomeServices = () => {
           }}
           className="flex flex-col items-center cursor-pointer group"
         >
-          <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition">
+          <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-purple-400 transition">
             <img src={microwave} alt="Microwave" className="w-16" />
           </div>
           <p className="mt-3 text-sm">Microwave</p>
